@@ -1,0 +1,1663 @@
+Analysis & Synthesis report for uart_test
+Tue Mar 30 00:11:54 2021
+Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |uart_test|fifo:U_Controller|state
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Registers Added for RAM Pass-Through Logic
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Source assignments for uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated
+ 18. Source assignments for uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated
+ 19. Parameter Settings for User Entity Instance: my_pll:U_PLL|altpll:altpll_component
+ 20. Parameter Settings for User Entity Instance: fifo:U_Controller
+ 21. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter
+ 22. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx
+ 23. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo
+ 24. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops
+ 25. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver
+ 26. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx
+ 27. Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo
+ 28. Parameter Settings for Inferred Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0
+ 29. Parameter Settings for Inferred Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0
+ 30. altpll Parameter Settings by Entity Instance
+ 31. altsyncram Parameter Settings by Entity Instance
+ 32. Port Connectivity Checks: "uart_regs:U_Driver|uart_receiver:receiver"
+ 33. Port Connectivity Checks: "uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops"
+ 34. Port Connectivity Checks: "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx"
+ 35. Port Connectivity Checks: "uart_regs:U_Driver"
+ 36. Port Connectivity Checks: "my_pll:U_PLL"
+ 37. Elapsed Time Per Partition
+ 38. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++---------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                    ;
++------------------------------------+--------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Mar 30 00:11:54 2021      ;
+; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
+; Revision Name                      ; uart_test                                  ;
+; Top-level Entity Name              ; uart_test                                  ;
+; Family                             ; Cyclone IV E                               ;
+; Total logic elements               ; 890                                        ;
+;     Total combinational functions  ; 748                                        ;
+;     Dedicated logic registers      ; 436                                        ;
+; Total registers                    ; 436                                        ;
+; Total pins                         ; 25                                         ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 256                                        ;
+; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Total PLLs                         ; 1                                          ;
++------------------------------------+--------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; uart_test          ; uart_test          ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                 ;
++-------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                      ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                        ; Library ;
++-------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
+; sources/my_pll.v                                      ; yes             ; User Wizard-Generated File   ; D:/laptrinhphancung/uart_test/sources/my_pll.v                                      ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_transmitter.v ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_transmitter.v ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_tfifo.v       ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_tfifo.v       ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_sync_flops.v  ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_sync_flops.v  ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_rfifo.v       ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_rfifo.v       ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_regs.v        ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_regs.v        ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_receiver.v    ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_receiver.v    ;         ;
+; sources/uart/rtl/verilog/uart16550/uart_defines.v     ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/uart_defines.v     ;         ;
+; sources/uart/rtl/verilog/uart16550/timescale.v        ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/timescale.v        ;         ;
+; sources/uart/rtl/verilog/uart16550/raminfr.v          ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart/rtl/verilog/uart16550/raminfr.v          ;         ;
+; sources/fifo.v                                        ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/fifo.v                                        ;         ;
+; sources/uart_test.v                                   ; yes             ; User Verilog HDL File        ; D:/laptrinhphancung/uart_test/sources/uart_test.v                                   ;         ;
+; altpll.tdf                                            ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altpll.tdf                           ;         ;
+; aglobal131.inc                                        ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/aglobal131.inc                       ;         ;
+; stratix_pll.inc                                       ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/stratix_pll.inc                      ;         ;
+; stratixii_pll.inc                                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/stratixii_pll.inc                    ;         ;
+; cycloneii_pll.inc                                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/cycloneii_pll.inc                    ;         ;
+; db/my_pll_altpll.v                                    ; yes             ; Auto-Generated Megafunction  ; D:/laptrinhphancung/uart_test/db/my_pll_altpll.v                                    ;         ;
+; altsyncram.tdf                                        ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altsyncram.tdf                       ;         ;
+; stratix_ram_block.inc                                 ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/stratix_ram_block.inc                ;         ;
+; lpm_mux.inc                                           ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/lpm_mux.inc                          ;         ;
+; lpm_decode.inc                                        ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/lpm_decode.inc                       ;         ;
+; a_rdenreg.inc                                         ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/a_rdenreg.inc                        ;         ;
+; altrom.inc                                            ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altrom.inc                           ;         ;
+; altram.inc                                            ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altram.inc                           ;         ;
+; altdpram.inc                                          ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altdpram.inc                         ;         ;
+; db/altsyncram_u9c1.tdf                                ; yes             ; Auto-Generated Megafunction  ; D:/laptrinhphancung/uart_test/db/altsyncram_u9c1.tdf                                ;         ;
++-------------------------------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                      ;
++---------------------------------------------+------------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                              ;
++---------------------------------------------+------------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 890                                                                                ;
+;                                             ;                                                                                    ;
+; Total combinational functions               ; 748                                                                                ;
+; Logic element usage by number of LUT inputs ;                                                                                    ;
+;     -- 4 input functions                    ; 414                                                                                ;
+;     -- 3 input functions                    ; 112                                                                                ;
+;     -- <=2 input functions                  ; 222                                                                                ;
+;                                             ;                                                                                    ;
+; Logic elements by mode                      ;                                                                                    ;
+;     -- normal mode                          ; 636                                                                                ;
+;     -- arithmetic mode                      ; 112                                                                                ;
+;                                             ;                                                                                    ;
+; Total registers                             ; 436                                                                                ;
+;     -- Dedicated logic registers            ; 436                                                                                ;
+;     -- I/O registers                        ; 0                                                                                  ;
+;                                             ;                                                                                    ;
+; I/O pins                                    ; 25                                                                                 ;
+; Total memory bits                           ; 256                                                                                ;
+; Embedded Multiplier 9-bit elements          ; 0                                                                                  ;
+; Total PLLs                                  ; 1                                                                                  ;
+;     -- PLLs                                 ; 1                                                                                  ;
+;                                             ;                                                                                    ;
+; Maximum fan-out node                        ; my_pll:U_PLL|altpll:altpll_component|my_pll_altpll:auto_generated|wire_pll1_clk[0] ;
+; Maximum fan-out                             ; 454                                                                                ;
+; Total fan-out                               ; 4339                                                                               ;
+; Average fan-out                             ; 3.47                                                                               ;
++---------------------------------------------+------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                             ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                         ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                             ; Library Name ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |uart_test                                         ; 748 (1)           ; 436 (0)      ; 256         ; 0            ; 0       ; 0         ; 25   ; 0            ; |uart_test                                                                                                                                      ; work         ;
+;    |fifo:U_Controller|                             ; 188 (188)         ; 124 (124)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|fifo:U_Controller                                                                                                                    ; work         ;
+;    |my_pll:U_PLL|                                  ; 1 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|my_pll:U_PLL                                                                                                                         ; work         ;
+;       |altpll:altpll_component|                    ; 1 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|my_pll:U_PLL|altpll:altpll_component                                                                                                 ; work         ;
+;          |my_pll_altpll:auto_generated|            ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|my_pll:U_PLL|altpll:altpll_component|my_pll_altpll:auto_generated                                                                    ; work         ;
+;    |uart_regs:U_Driver|                            ; 558 (203)         ; 311 (107)    ; 256         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver                                                                                                                   ; work         ;
+;       |uart_receiver:receiver|                     ; 262 (122)         ; 141 (54)     ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver                                                                                            ; work         ;
+;          |uart_rfifo:fifo_rx|                      ; 140 (134)         ; 87 (61)      ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx                                                                         ; work         ;
+;             |raminfr:rfifo|                        ; 6 (6)             ; 26 (26)      ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo                                                           ; work         ;
+;                |altsyncram:ram_rtl_0|              ; 0 (0)             ; 0 (0)        ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0                                      ; work         ;
+;                   |altsyncram_u9c1:auto_generated| ; 0 (0)             ; 0 (0)        ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated       ; work         ;
+;       |uart_sync_flops:i_uart_sync_flops|          ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops                                                                                 ; work         ;
+;       |uart_transmitter:transmitter|               ; 92 (56)           ; 61 (22)      ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter                                                                                      ; work         ;
+;          |uart_tfifo:fifo_tx|                      ; 36 (21)           ; 39 (13)      ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx                                                                   ; work         ;
+;             |raminfr:tfifo|                        ; 15 (15)           ; 26 (26)      ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo                                                     ; work         ;
+;                |altsyncram:ram_rtl_0|              ; 0 (0)             ; 0 (0)        ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0                                ; work         ;
+;                   |altsyncram_u9c1:auto_generated| ; 0 (0)             ; 0 (0)        ; 128         ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated ; work         ;
++----------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                                    ;
++-------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                                            ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++-------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated|ALTSYNCRAM       ; AUTO ; Simple Dual Port ; 16           ; 8            ; 16           ; 8            ; 128  ; None ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 16           ; 8            ; 16           ; 8            ; 128  ; None ;
++-------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                    ;
++--------+--------------+---------+--------------+--------------+-------------------------+------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance         ; IP Include File                                ;
++--------+--------------+---------+--------------+--------------+-------------------------+------------------------------------------------+
+; Altera ; ALTPLL       ; 13.1    ; N/A          ; N/A          ; |uart_test|my_pll:U_PLL ; D:/laptrinhphancung/uart_test/sources/my_pll.v ;
++--------+--------------+---------+--------------+--------------+-------------------------+------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |uart_test|fifo:U_Controller|state                                                                                                                                                                                                                                                                     ;
++------------------------------+-----------------------+--------------------+-------------------+------------------------------+---------------------+--------------------+-------------------+-------------------------+--------------+--------------+--------------+-----------------+-----------------+---------------+
+; Name                         ; state.ST_SHOW_LED_RED ; state.ST_LISTEN_PC ; state.ST_WAIT_KEY ; state.ST_SEND_TEST_CHAR_WAIT ; state.ST_CMD_DECODE ; state.ST_CHECK_LSR ; state.ST_READ_LSR ; state.ST_SEND_TEST_CHAR ; state.ST_IER ; state.ST_FCR ; state.ST_LCR ; state.ST_DL_LSB ; state.ST_DL_MSB ; state.ST_IDLE ;
++------------------------------+-----------------------+--------------------+-------------------+------------------------------+---------------------+--------------------+-------------------+-------------------------+--------------+--------------+--------------+-----------------+-----------------+---------------+
+; state.ST_IDLE                ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 0             ;
+; state.ST_DL_MSB              ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 1               ; 1             ;
+; state.ST_DL_LSB              ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 1               ; 0               ; 1             ;
+; state.ST_LCR                 ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 1            ; 0               ; 0               ; 1             ;
+; state.ST_FCR                 ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 1            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_IER                 ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 1            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_SEND_TEST_CHAR      ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 1                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_READ_LSR            ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 1                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_CHECK_LSR           ; 0                     ; 0                  ; 0                 ; 0                            ; 0                   ; 1                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_CMD_DECODE          ; 0                     ; 0                  ; 0                 ; 0                            ; 1                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_SEND_TEST_CHAR_WAIT ; 0                     ; 0                  ; 0                 ; 1                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_WAIT_KEY            ; 0                     ; 0                  ; 1                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_LISTEN_PC           ; 0                     ; 1                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
+; state.ST_SHOW_LED_RED        ; 1                     ; 0                  ; 0                 ; 0                            ; 0                   ; 0                  ; 0                 ; 0                       ; 0            ; 0            ; 0            ; 0               ; 0               ; 1             ;
++------------------------------+-----------------------+--------------------+-------------------+------------------------------+---------------------+--------------------+-------------------+-------------------------+--------------+--------------+--------------+-----------------+-----------------+---------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                 ;
++--------------------------------------------------------------------------+---------------------------------------------------------+
+; Register name                                                            ; Reason for Removal                                      ;
++--------------------------------------------------------------------------+---------------------------------------------------------+
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|overrun     ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[31][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[31][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[31][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[30][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[30][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[30][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[29][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[29][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[29][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[28][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[28][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[28][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[27][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[27][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[27][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[26][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[26][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[26][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[25][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[25][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[25][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[24][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[24][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[24][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[23][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[23][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[23][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[22][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[22][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[22][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[21][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[21][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[21][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[20][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[20][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[20][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[19][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[19][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[19][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[18][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[18][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[18][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[17][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[17][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[17][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[16][2] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[16][1] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[16][0] ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|lsr1_d                                                ; Lost fanout                                             ;
+; uart_regs:U_Driver|lsr1r                                                 ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][3]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][2]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][1]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[0][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][3]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[1][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[2][0]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][4]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[3][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][6]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[4][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][3]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][2]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[5][0]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[6][0]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][6]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[7][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][4]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][2]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[8][0]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][7]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][6]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][5]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][4]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][3]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][2]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][1]                               ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[9][0]                               ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][7]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][6]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][5]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][4]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][3]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][2]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][1]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|led_2                                                  ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[10][0]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][7]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][6]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][5]                              ; Stuck at VCC due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][4]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][3]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][2]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][1]                              ; Stuck at GND due to stuck port data_in                  ;
+; fifo:U_Controller|string_NHAP_MA_TAU[11][0]                              ; Stuck at GND due to stuck port data_in                  ;
+; uart_regs:U_Driver|msr[1..3]                                             ; Merged with uart_regs:U_Driver|msr[0]                   ;
+; uart_regs:U_Driver|delayed_modem_signals[1..3]                           ; Merged with uart_regs:U_Driver|delayed_modem_signals[0] ;
+; fifo:U_Controller|state~4                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~5                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~6                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~7                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~8                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~9                                                ; Lost fanout                                             ;
+; fifo:U_Controller|state~10                                               ; Lost fanout                                             ;
+; fifo:U_Controller|state~11                                               ; Lost fanout                                             ;
+; fifo:U_Controller|state.ST_WAIT_KEY                                      ; Stuck at GND due to stuck port data_in                  ;
+; Total Number of Removed Registers = 163                                  ;                                                         ;
++--------------------------------------------------------------------------+---------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                            ;
++----------------------------------------------------------------------+---------------------------+-----------------------------------------------------+
+; Register name                                                        ; Reason for Removal        ; Registers Removed due to This Register              ;
++----------------------------------------------------------------------+---------------------------+-----------------------------------------------------+
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|overrun ; Stuck at GND              ; uart_regs:U_Driver|lsr1_d, uart_regs:U_Driver|lsr1r ;
+;                                                                      ; due to stuck port data_in ;                                                     ;
++----------------------------------------------------------------------+---------------------------+-----------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 436   ;
+; Number of registers using Synchronous Clear  ; 82    ;
+; Number of registers using Synchronous Load   ; 36    ;
+; Number of registers using Asynchronous Clear ; 394   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 290   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                 ;
++--------------------------------------------------------------------+---------+
+; Inverted Register                                                  ; Fan out ;
++--------------------------------------------------------------------+---------+
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[0]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[1]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[2]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[3]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[4]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_b[7]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[0]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[1]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[2]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[3]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[4]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[5]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[6]             ; 2       ;
+; uart_regs:U_Driver|uart_receiver:receiver|counter_t[9]             ; 2       ;
+; fifo:U_Controller|led_1                                            ; 2       ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|stx_o_tmp          ; 4       ;
+; uart_regs:U_Driver|lcr[0]                                          ; 14      ;
+; uart_regs:U_Driver|lsr6r                                           ; 2       ;
+; uart_regs:U_Driver|iir[0]                                          ; 6       ;
+; uart_regs:U_Driver|lcr[1]                                          ; 14      ;
+; uart_regs:U_Driver|lsr5r                                           ; 5       ;
+; uart_regs:U_Driver|msi_reset                                       ; 2       ;
+; uart_regs:U_Driver|lsr6_d                                          ; 1       ;
+; uart_regs:U_Driver|fcr[1]                                          ; 1       ;
+; uart_regs:U_Driver|fcr[0]                                          ; 1       ;
+; uart_regs:U_Driver|lsr5_d                                          ; 1       ;
+; uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops|sync_dat_o[0] ; 1       ;
+; uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops|flop_0[0]     ; 1       ;
+; Total number of inverted registers = 28                            ;         ;
++--------------------------------------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                                                                                                                                                         ;
++-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+; Register Name                                                                                         ; RAM Name                                                                                   ;
++-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[0]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[1]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[2]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[3]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[4]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[5]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[6]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[7]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[8]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[9]        ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[10]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[11]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[12]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[13]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[14]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[15]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0_bypass[16]       ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0       ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[0]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[1]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[2]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[3]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[4]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[5]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[6]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[7]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[8]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[9]  ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[10] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[11] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[12] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[13] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[14] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[15] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
+; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0_bypass[16] ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0 ;
++-------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|top[1]                  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|iir[2]                                                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|block_cnt[2]                                                      ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|block_cnt[3]                                                      ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|top[1]            ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_b[5]                               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_t[7]                               ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|count[3]                ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|count[2]          ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|counter[0]                           ;
+; 17:1               ; 2 bits    ; 22 LEs        ; 2 LEs                ; 20 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|rbit_counter[1]                            ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |uart_test|fifo:U_Controller|r_counter[6]                                                       ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|counter[3]                           ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[15][2]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[14][2]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[13][2]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[12][0]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[11][0]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[10][2]             ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[9][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[8][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[7][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[6][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[5][2]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[4][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[3][2]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[2][0]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[1][2]              ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|fifo[0][0]              ;
+; 18:1               ; 4 bits    ; 48 LEs        ; 4 LEs                ; 44 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|rshift[1]                                  ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |uart_test|fifo:U_Controller|r_counter2[31]                                                     ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 8 LEs                ; 48 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|shift_out[0]                         ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 4 LEs                ; 44 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|rcounter16[3]                              ;
+; 19:1               ; 9 bits    ; 108 LEs       ; 9 LEs                ; 99 LEs                 ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|rf_data_in[9]                              ;
+; 35:1               ; 2 bits    ; 46 LEs        ; 14 LEs               ; 32 LEs                 ; Yes        ; |uart_test|fifo:U_Controller|uart_wdata_o[2]                                                    ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_b[1]                               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_b[4]                               ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_t[2]                               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|counter_t[5]                               ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|Mux57                   ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|bottom                  ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|bottom            ;
+; 32:1               ; 3 bits    ; 63 LEs        ; 24 LEs               ; 39 LEs                 ; No         ; |uart_test|fifo:U_Controller|uart_wdata_o                                                       ;
+; 12:1               ; 4 bits    ; 32 LEs        ; 28 LEs               ; 4 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|Mux0                                                              ;
+; 11:1               ; 3 bits    ; 21 LEs        ; 21 LEs               ; 0 LEs                  ; No         ; |uart_test|uart_regs:U_Driver|Mux4                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                      ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                       ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0|altsyncram_u9c1:auto_generated ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                            ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                             ;
++---------------------------------+--------------------+------+-----------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: my_pll:U_PLL|altpll:altpll_component ;
++-------------------------------+--------------------------+------------------------+
+; Parameter Name                ; Value                    ; Type                   ;
++-------------------------------+--------------------------+------------------------+
+; OPERATION_MODE                ; NORMAL                   ; Untyped                ;
+; PLL_TYPE                      ; AUTO                     ; Untyped                ;
+; LPM_HINT                      ; CBX_MODULE_PREFIX=my_pll ; Untyped                ;
+; QUALIFY_CONF_DONE             ; OFF                      ; Untyped                ;
+; COMPENSATE_CLOCK              ; CLK0                     ; Untyped                ;
+; SCAN_CHAIN                    ; LONG                     ; Untyped                ;
+; PRIMARY_CLOCK                 ; INCLK0                   ; Untyped                ;
+; INCLK0_INPUT_FREQUENCY        ; 20000                    ; Signed Integer         ;
+; INCLK1_INPUT_FREQUENCY        ; 0                        ; Untyped                ;
+; GATE_LOCK_SIGNAL              ; NO                       ; Untyped                ;
+; GATE_LOCK_COUNTER             ; 0                        ; Untyped                ;
+; LOCK_HIGH                     ; 1                        ; Untyped                ;
+; LOCK_LOW                      ; 1                        ; Untyped                ;
+; VALID_LOCK_MULTIPLIER         ; 1                        ; Untyped                ;
+; INVALID_LOCK_MULTIPLIER       ; 5                        ; Untyped                ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF                      ; Untyped                ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF                      ; Untyped                ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF                      ; Untyped                ;
+; SKIP_VCO                      ; OFF                      ; Untyped                ;
+; SWITCH_OVER_COUNTER           ; 0                        ; Untyped                ;
+; SWITCH_OVER_TYPE              ; AUTO                     ; Untyped                ;
+; FEEDBACK_SOURCE               ; EXTCLK0                  ; Untyped                ;
+; BANDWIDTH                     ; 0                        ; Untyped                ;
+; BANDWIDTH_TYPE                ; AUTO                     ; Untyped                ;
+; SPREAD_FREQUENCY              ; 0                        ; Untyped                ;
+; DOWN_SPREAD                   ; 0                        ; Untyped                ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF                      ; Untyped                ;
+; SELF_RESET_ON_LOSS_LOCK       ; OFF                      ; Untyped                ;
+; CLK9_MULTIPLY_BY              ; 0                        ; Untyped                ;
+; CLK8_MULTIPLY_BY              ; 0                        ; Untyped                ;
+; CLK7_MULTIPLY_BY              ; 0                        ; Untyped                ;
+; CLK6_MULTIPLY_BY              ; 0                        ; Untyped                ;
+; CLK5_MULTIPLY_BY              ; 1                        ; Untyped                ;
+; CLK4_MULTIPLY_BY              ; 1                        ; Untyped                ;
+; CLK3_MULTIPLY_BY              ; 5                        ; Signed Integer         ;
+; CLK2_MULTIPLY_BY              ; 1                        ; Signed Integer         ;
+; CLK1_MULTIPLY_BY              ; 1                        ; Signed Integer         ;
+; CLK0_MULTIPLY_BY              ; 1                        ; Signed Integer         ;
+; CLK9_DIVIDE_BY                ; 0                        ; Untyped                ;
+; CLK8_DIVIDE_BY                ; 0                        ; Untyped                ;
+; CLK7_DIVIDE_BY                ; 0                        ; Untyped                ;
+; CLK6_DIVIDE_BY                ; 0                        ; Untyped                ;
+; CLK5_DIVIDE_BY                ; 1                        ; Untyped                ;
+; CLK4_DIVIDE_BY                ; 1                        ; Untyped                ;
+; CLK3_DIVIDE_BY                ; 1                        ; Signed Integer         ;
+; CLK2_DIVIDE_BY                ; 2                        ; Signed Integer         ;
+; CLK1_DIVIDE_BY                ; 100                      ; Signed Integer         ;
+; CLK0_DIVIDE_BY                ; 10                       ; Signed Integer         ;
+; CLK9_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK8_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK7_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK6_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK5_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK4_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK3_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK2_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK1_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK0_PHASE_SHIFT              ; 0                        ; Untyped                ;
+; CLK5_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK4_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK3_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK2_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK1_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK0_TIME_DELAY               ; 0                        ; Untyped                ;
+; CLK9_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK8_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK7_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK6_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK5_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK4_DUTY_CYCLE               ; 50                       ; Untyped                ;
+; CLK3_DUTY_CYCLE               ; 50                       ; Signed Integer         ;
+; CLK2_DUTY_CYCLE               ; 50                       ; Signed Integer         ;
+; CLK1_DUTY_CYCLE               ; 50                       ; Signed Integer         ;
+; CLK0_DUTY_CYCLE               ; 50                       ; Signed Integer         ;
+; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK7_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK6_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK5_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK4_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK3_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK2_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK1_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK0_USE_EVEN_COUNTER_MODE    ; OFF                      ; Untyped                ;
+; CLK9_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK8_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK7_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK6_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK5_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK4_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK3_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK2_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK1_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; CLK0_USE_EVEN_COUNTER_VALUE   ; OFF                      ; Untyped                ;
+; LOCK_WINDOW_UI                ;  0.05                    ; Untyped                ;
+; LOCK_WINDOW_UI_BITS           ; UNUSED                   ; Untyped                ;
+; VCO_RANGE_DETECTOR_LOW_BITS   ; UNUSED                   ; Untyped                ;
+; VCO_RANGE_DETECTOR_HIGH_BITS  ; UNUSED                   ; Untyped                ;
+; DPA_MULTIPLY_BY               ; 0                        ; Untyped                ;
+; DPA_DIVIDE_BY                 ; 1                        ; Untyped                ;
+; DPA_DIVIDER                   ; 0                        ; Untyped                ;
+; EXTCLK3_MULTIPLY_BY           ; 1                        ; Untyped                ;
+; EXTCLK2_MULTIPLY_BY           ; 1                        ; Untyped                ;
+; EXTCLK1_MULTIPLY_BY           ; 1                        ; Untyped                ;
+; EXTCLK0_MULTIPLY_BY           ; 1                        ; Untyped                ;
+; EXTCLK3_DIVIDE_BY             ; 1                        ; Untyped                ;
+; EXTCLK2_DIVIDE_BY             ; 1                        ; Untyped                ;
+; EXTCLK1_DIVIDE_BY             ; 1                        ; Untyped                ;
+; EXTCLK0_DIVIDE_BY             ; 1                        ; Untyped                ;
+; EXTCLK3_PHASE_SHIFT           ; 0                        ; Untyped                ;
+; EXTCLK2_PHASE_SHIFT           ; 0                        ; Untyped                ;
+; EXTCLK1_PHASE_SHIFT           ; 0                        ; Untyped                ;
+; EXTCLK0_PHASE_SHIFT           ; 0                        ; Untyped                ;
+; EXTCLK3_TIME_DELAY            ; 0                        ; Untyped                ;
+; EXTCLK2_TIME_DELAY            ; 0                        ; Untyped                ;
+; EXTCLK1_TIME_DELAY            ; 0                        ; Untyped                ;
+; EXTCLK0_TIME_DELAY            ; 0                        ; Untyped                ;
+; EXTCLK3_DUTY_CYCLE            ; 50                       ; Untyped                ;
+; EXTCLK2_DUTY_CYCLE            ; 50                       ; Untyped                ;
+; EXTCLK1_DUTY_CYCLE            ; 50                       ; Untyped                ;
+; EXTCLK0_DUTY_CYCLE            ; 50                       ; Untyped                ;
+; VCO_MULTIPLY_BY               ; 0                        ; Untyped                ;
+; VCO_DIVIDE_BY                 ; 0                        ; Untyped                ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                        ; Untyped                ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                        ; Untyped                ;
+; VCO_MIN                       ; 0                        ; Untyped                ;
+; VCO_MAX                       ; 0                        ; Untyped                ;
+; VCO_CENTER                    ; 0                        ; Untyped                ;
+; PFD_MIN                       ; 0                        ; Untyped                ;
+; PFD_MAX                       ; 0                        ; Untyped                ;
+; M_INITIAL                     ; 0                        ; Untyped                ;
+; M                             ; 0                        ; Untyped                ;
+; N                             ; 1                        ; Untyped                ;
+; M2                            ; 1                        ; Untyped                ;
+; N2                            ; 1                        ; Untyped                ;
+; SS                            ; 1                        ; Untyped                ;
+; C0_HIGH                       ; 0                        ; Untyped                ;
+; C1_HIGH                       ; 0                        ; Untyped                ;
+; C2_HIGH                       ; 0                        ; Untyped                ;
+; C3_HIGH                       ; 0                        ; Untyped                ;
+; C4_HIGH                       ; 0                        ; Untyped                ;
+; C5_HIGH                       ; 0                        ; Untyped                ;
+; C6_HIGH                       ; 0                        ; Untyped                ;
+; C7_HIGH                       ; 0                        ; Untyped                ;
+; C8_HIGH                       ; 0                        ; Untyped                ;
+; C9_HIGH                       ; 0                        ; Untyped                ;
+; C0_LOW                        ; 0                        ; Untyped                ;
+; C1_LOW                        ; 0                        ; Untyped                ;
+; C2_LOW                        ; 0                        ; Untyped                ;
+; C3_LOW                        ; 0                        ; Untyped                ;
+; C4_LOW                        ; 0                        ; Untyped                ;
+; C5_LOW                        ; 0                        ; Untyped                ;
+; C6_LOW                        ; 0                        ; Untyped                ;
+; C7_LOW                        ; 0                        ; Untyped                ;
+; C8_LOW                        ; 0                        ; Untyped                ;
+; C9_LOW                        ; 0                        ; Untyped                ;
+; C0_INITIAL                    ; 0                        ; Untyped                ;
+; C1_INITIAL                    ; 0                        ; Untyped                ;
+; C2_INITIAL                    ; 0                        ; Untyped                ;
+; C3_INITIAL                    ; 0                        ; Untyped                ;
+; C4_INITIAL                    ; 0                        ; Untyped                ;
+; C5_INITIAL                    ; 0                        ; Untyped                ;
+; C6_INITIAL                    ; 0                        ; Untyped                ;
+; C7_INITIAL                    ; 0                        ; Untyped                ;
+; C8_INITIAL                    ; 0                        ; Untyped                ;
+; C9_INITIAL                    ; 0                        ; Untyped                ;
+; C0_MODE                       ; BYPASS                   ; Untyped                ;
+; C1_MODE                       ; BYPASS                   ; Untyped                ;
+; C2_MODE                       ; BYPASS                   ; Untyped                ;
+; C3_MODE                       ; BYPASS                   ; Untyped                ;
+; C4_MODE                       ; BYPASS                   ; Untyped                ;
+; C5_MODE                       ; BYPASS                   ; Untyped                ;
+; C6_MODE                       ; BYPASS                   ; Untyped                ;
+; C7_MODE                       ; BYPASS                   ; Untyped                ;
+; C8_MODE                       ; BYPASS                   ; Untyped                ;
+; C9_MODE                       ; BYPASS                   ; Untyped                ;
+; C0_PH                         ; 0                        ; Untyped                ;
+; C1_PH                         ; 0                        ; Untyped                ;
+; C2_PH                         ; 0                        ; Untyped                ;
+; C3_PH                         ; 0                        ; Untyped                ;
+; C4_PH                         ; 0                        ; Untyped                ;
+; C5_PH                         ; 0                        ; Untyped                ;
+; C6_PH                         ; 0                        ; Untyped                ;
+; C7_PH                         ; 0                        ; Untyped                ;
+; C8_PH                         ; 0                        ; Untyped                ;
+; C9_PH                         ; 0                        ; Untyped                ;
+; L0_HIGH                       ; 1                        ; Untyped                ;
+; L1_HIGH                       ; 1                        ; Untyped                ;
+; G0_HIGH                       ; 1                        ; Untyped                ;
+; G1_HIGH                       ; 1                        ; Untyped                ;
+; G2_HIGH                       ; 1                        ; Untyped                ;
+; G3_HIGH                       ; 1                        ; Untyped                ;
+; E0_HIGH                       ; 1                        ; Untyped                ;
+; E1_HIGH                       ; 1                        ; Untyped                ;
+; E2_HIGH                       ; 1                        ; Untyped                ;
+; E3_HIGH                       ; 1                        ; Untyped                ;
+; L0_LOW                        ; 1                        ; Untyped                ;
+; L1_LOW                        ; 1                        ; Untyped                ;
+; G0_LOW                        ; 1                        ; Untyped                ;
+; G1_LOW                        ; 1                        ; Untyped                ;
+; G2_LOW                        ; 1                        ; Untyped                ;
+; G3_LOW                        ; 1                        ; Untyped                ;
+; E0_LOW                        ; 1                        ; Untyped                ;
+; E1_LOW                        ; 1                        ; Untyped                ;
+; E2_LOW                        ; 1                        ; Untyped                ;
+; E3_LOW                        ; 1                        ; Untyped                ;
+; L0_INITIAL                    ; 1                        ; Untyped                ;
+; L1_INITIAL                    ; 1                        ; Untyped                ;
+; G0_INITIAL                    ; 1                        ; Untyped                ;
+; G1_INITIAL                    ; 1                        ; Untyped                ;
+; G2_INITIAL                    ; 1                        ; Untyped                ;
+; G3_INITIAL                    ; 1                        ; Untyped                ;
+; E0_INITIAL                    ; 1                        ; Untyped                ;
+; E1_INITIAL                    ; 1                        ; Untyped                ;
+; E2_INITIAL                    ; 1                        ; Untyped                ;
+; E3_INITIAL                    ; 1                        ; Untyped                ;
+; L0_MODE                       ; BYPASS                   ; Untyped                ;
+; L1_MODE                       ; BYPASS                   ; Untyped                ;
+; G0_MODE                       ; BYPASS                   ; Untyped                ;
+; G1_MODE                       ; BYPASS                   ; Untyped                ;
+; G2_MODE                       ; BYPASS                   ; Untyped                ;
+; G3_MODE                       ; BYPASS                   ; Untyped                ;
+; E0_MODE                       ; BYPASS                   ; Untyped                ;
+; E1_MODE                       ; BYPASS                   ; Untyped                ;
+; E2_MODE                       ; BYPASS                   ; Untyped                ;
+; E3_MODE                       ; BYPASS                   ; Untyped                ;
+; L0_PH                         ; 0                        ; Untyped                ;
+; L1_PH                         ; 0                        ; Untyped                ;
+; G0_PH                         ; 0                        ; Untyped                ;
+; G1_PH                         ; 0                        ; Untyped                ;
+; G2_PH                         ; 0                        ; Untyped                ;
+; G3_PH                         ; 0                        ; Untyped                ;
+; E0_PH                         ; 0                        ; Untyped                ;
+; E1_PH                         ; 0                        ; Untyped                ;
+; E2_PH                         ; 0                        ; Untyped                ;
+; E3_PH                         ; 0                        ; Untyped                ;
+; M_PH                          ; 0                        ; Untyped                ;
+; C1_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C2_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C3_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C4_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C5_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C6_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C7_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C8_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; C9_USE_CASC_IN                ; OFF                      ; Untyped                ;
+; CLK0_COUNTER                  ; G0                       ; Untyped                ;
+; CLK1_COUNTER                  ; G0                       ; Untyped                ;
+; CLK2_COUNTER                  ; G0                       ; Untyped                ;
+; CLK3_COUNTER                  ; G0                       ; Untyped                ;
+; CLK4_COUNTER                  ; G0                       ; Untyped                ;
+; CLK5_COUNTER                  ; G0                       ; Untyped                ;
+; CLK6_COUNTER                  ; E0                       ; Untyped                ;
+; CLK7_COUNTER                  ; E1                       ; Untyped                ;
+; CLK8_COUNTER                  ; E2                       ; Untyped                ;
+; CLK9_COUNTER                  ; E3                       ; Untyped                ;
+; L0_TIME_DELAY                 ; 0                        ; Untyped                ;
+; L1_TIME_DELAY                 ; 0                        ; Untyped                ;
+; G0_TIME_DELAY                 ; 0                        ; Untyped                ;
+; G1_TIME_DELAY                 ; 0                        ; Untyped                ;
+; G2_TIME_DELAY                 ; 0                        ; Untyped                ;
+; G3_TIME_DELAY                 ; 0                        ; Untyped                ;
+; E0_TIME_DELAY                 ; 0                        ; Untyped                ;
+; E1_TIME_DELAY                 ; 0                        ; Untyped                ;
+; E2_TIME_DELAY                 ; 0                        ; Untyped                ;
+; E3_TIME_DELAY                 ; 0                        ; Untyped                ;
+; M_TIME_DELAY                  ; 0                        ; Untyped                ;
+; N_TIME_DELAY                  ; 0                        ; Untyped                ;
+; EXTCLK3_COUNTER               ; E3                       ; Untyped                ;
+; EXTCLK2_COUNTER               ; E2                       ; Untyped                ;
+; EXTCLK1_COUNTER               ; E1                       ; Untyped                ;
+; EXTCLK0_COUNTER               ; E0                       ; Untyped                ;
+; ENABLE0_COUNTER               ; L0                       ; Untyped                ;
+; ENABLE1_COUNTER               ; L0                       ; Untyped                ;
+; CHARGE_PUMP_CURRENT           ; 2                        ; Untyped                ;
+; LOOP_FILTER_R                 ;  1.000000                ; Untyped                ;
+; LOOP_FILTER_C                 ; 5                        ; Untyped                ;
+; CHARGE_PUMP_CURRENT_BITS      ; 9999                     ; Untyped                ;
+; LOOP_FILTER_R_BITS            ; 9999                     ; Untyped                ;
+; LOOP_FILTER_C_BITS            ; 9999                     ; Untyped                ;
+; VCO_POST_SCALE                ; 0                        ; Untyped                ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                        ; Untyped                ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                        ; Untyped                ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                        ; Untyped                ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone IV E             ; Untyped                ;
+; PORT_CLKENA0                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKENA1                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKENA2                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKENA3                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKENA4                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKENA5                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_EXTCLK0                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_EXTCLK1                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_EXTCLK2                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_EXTCLK3                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKBAD0                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKBAD1                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK0                     ; PORT_USED                ; Untyped                ;
+; PORT_CLK1                     ; PORT_USED                ; Untyped                ;
+; PORT_CLK2                     ; PORT_USED                ; Untyped                ;
+; PORT_CLK3                     ; PORT_USED                ; Untyped                ;
+; PORT_CLK4                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK5                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK6                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK7                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK8                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLK9                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANDATA                 ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANDATAOUT              ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANDONE                 ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_ACTIVECLOCK              ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKLOSS                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_INCLK1                   ; PORT_UNUSED              ; Untyped                ;
+; PORT_INCLK0                   ; PORT_USED                ; Untyped                ;
+; PORT_FBIN                     ; PORT_UNUSED              ; Untyped                ;
+; PORT_PLLENA                   ; PORT_UNUSED              ; Untyped                ;
+; PORT_CLKSWITCH                ; PORT_UNUSED              ; Untyped                ;
+; PORT_ARESET                   ; PORT_USED                ; Untyped                ;
+; PORT_PFDENA                   ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANCLK                  ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANACLR                 ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANREAD                 ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANWRITE                ; PORT_UNUSED              ; Untyped                ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_LOCKED                   ; PORT_USED                ; Untyped                ;
+; PORT_CONFIGUPDATE             ; PORT_UNUSED              ; Untyped                ;
+; PORT_FBOUT                    ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_PHASEDONE                ; PORT_UNUSED              ; Untyped                ;
+; PORT_PHASESTEP                ; PORT_UNUSED              ; Untyped                ;
+; PORT_PHASEUPDOWN              ; PORT_UNUSED              ; Untyped                ;
+; PORT_SCANCLKENA               ; PORT_UNUSED              ; Untyped                ;
+; PORT_PHASECOUNTERSELECT       ; PORT_UNUSED              ; Untyped                ;
+; PORT_VCOOVERRANGE             ; PORT_CONNECTIVITY        ; Untyped                ;
+; PORT_VCOUNDERRANGE            ; PORT_CONNECTIVITY        ; Untyped                ;
+; M_TEST_SOURCE                 ; 5                        ; Untyped                ;
+; C0_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C1_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C2_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C3_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C4_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C5_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C6_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C7_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C8_TEST_SOURCE                ; 5                        ; Untyped                ;
+; C9_TEST_SOURCE                ; 5                        ; Untyped                ;
+; CBXI_PARAMETER                ; my_pll_altpll            ; Untyped                ;
+; VCO_FREQUENCY_CONTROL         ; AUTO                     ; Untyped                ;
+; VCO_PHASE_SHIFT_STEP          ; 0                        ; Untyped                ;
+; WIDTH_CLOCK                   ; 5                        ; Signed Integer         ;
+; WIDTH_PHASECOUNTERSELECT      ; 4                        ; Untyped                ;
+; USING_FBMIMICBIDIR_PORT       ; OFF                      ; Untyped                ;
+; DEVICE_FAMILY                 ; Cyclone IV E             ; Untyped                ;
+; SCAN_CHAIN_MIF_FILE           ; UNUSED                   ; Untyped                ;
+; SIM_GATE_LOCK_DEVICE_BEHAVIOR ; OFF                      ; Untyped                ;
+; AUTO_CARRY_CHAINS             ; ON                       ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS          ; OFF                      ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS           ; ON                       ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS        ; OFF                      ; IGNORE_CASCADE         ;
++-------------------------------+--------------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:U_Controller ;
++------------------------+----------+----------------------------+
+; Parameter Name         ; Value    ; Type                       ;
++------------------------+----------+----------------------------+
+; DATA_WIDTH             ; 12       ; Signed Integer             ;
+; DATA_DEPTH             ; 8        ; Signed Integer             ;
+; DATA_BIT               ; 8        ; Signed Integer             ;
+; LED_BIT                ; 5        ; Signed Integer             ;
+; ST_IDLE                ; 00000000 ; Unsigned Binary            ;
+; ST_DL_MSB              ; 00000001 ; Unsigned Binary            ;
+; ST_DL_LSB              ; 00000010 ; Unsigned Binary            ;
+; ST_LCR                 ; 00000011 ; Unsigned Binary            ;
+; ST_FCR                 ; 00000100 ; Unsigned Binary            ;
+; ST_IER                 ; 00000101 ; Unsigned Binary            ;
+; ST_SEND_TEST_CHAR      ; 00000110 ; Unsigned Binary            ;
+; ST_READ_LSR            ; 00000111 ; Unsigned Binary            ;
+; ST_CHECK_LSR           ; 00001000 ; Unsigned Binary            ;
+; ST_CMD_DECODE          ; 00001001 ; Unsigned Binary            ;
+; ST_SEND_TEST_CHAR_WAIT ; 00001010 ; Unsigned Binary            ;
+; ST_WAIT_KEY            ; 00001011 ; Unsigned Binary            ;
+; ST_LISTEN_PC           ; 00001100 ; Unsigned Binary            ;
+; ST_SHOW_LED_RED        ; 00001101 ; Unsigned Binary            ;
+; CM_SEND_TEST_CHAR      ; 00101111 ; Unsigned Binary            ;
+; CM_SEND_ENTER          ; 00001101 ; Unsigned Binary            ;
+; CHAR_A                 ; 01100001 ; Unsigned Binary            ;
+; CHAR_B                 ; 01100010 ; Unsigned Binary            ;
+; CHAR_C                 ; 01100011 ; Unsigned Binary            ;
+; CHAR_D                 ; 01100100 ; Unsigned Binary            ;
+; CHAR_E                 ; 01100101 ; Unsigned Binary            ;
+; CHAR_F                 ; 01100110 ; Unsigned Binary            ;
+; CHAR_G                 ; 01100111 ; Unsigned Binary            ;
+; CHAR_H                 ; 01101000 ; Unsigned Binary            ;
+; CHAR_I                 ; 01101001 ; Unsigned Binary            ;
+; CHAR_J                 ; 01101010 ; Unsigned Binary            ;
+; CHAR_K                 ; 01101011 ; Unsigned Binary            ;
+; CHAR_L                 ; 01101100 ; Unsigned Binary            ;
+; CHAR_M                 ; 01101101 ; Unsigned Binary            ;
+; CHAR_N                 ; 01101110 ; Unsigned Binary            ;
+; CHAR_O                 ; 01101111 ; Unsigned Binary            ;
+; CHAR_P                 ; 01110000 ; Unsigned Binary            ;
+; CHAR_Q                 ; 01110001 ; Unsigned Binary            ;
+; CHAR_R                 ; 01110010 ; Unsigned Binary            ;
+; CHAR_S                 ; 01110011 ; Unsigned Binary            ;
+; CHAR_T                 ; 01110100 ; Unsigned Binary            ;
+; CHAR_U                 ; 01110101 ; Unsigned Binary            ;
+; CHAR_V                 ; 01110110 ; Unsigned Binary            ;
+; CHAR_W                 ; 01110111 ; Unsigned Binary            ;
+; CHAR_X                 ; 01111000 ; Unsigned Binary            ;
+; CHAR_Y                 ; 01111001 ; Unsigned Binary            ;
+; CHAR_Z                 ; 01111010 ; Unsigned Binary            ;
+; CHAR_Space             ; 00100000 ; Unsigned Binary            ;
+; CHAR_Enter             ; 00001010 ; Unsigned Binary            ;
++------------------------+----------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter ;
++----------------+-------+---------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                ;
++----------------+-------+---------------------------------------------------------------------+
+; s_idle         ; 000   ; Unsigned Binary                                                     ;
+; s_send_start   ; 001   ; Unsigned Binary                                                     ;
+; s_send_byte    ; 010   ; Unsigned Binary                                                     ;
+; s_send_parity  ; 011   ; Unsigned Binary                                                     ;
+; s_send_stop    ; 100   ; Unsigned Binary                                                     ;
+; s_pop_byte     ; 101   ; Unsigned Binary                                                     ;
++----------------+-------+---------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; fifo_width     ; 8     ; Signed Integer                                                                         ;
+; fifo_depth     ; 32    ; Signed Integer                                                                         ;
+; fifo_pointer_w ; 4     ; Signed Integer                                                                         ;
+; fifo_counter_w ; 5     ; Signed Integer                                                                         ;
++----------------+-------+----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                 ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; addr_width     ; 4     ; Signed Integer                                                                                       ;
+; data_width     ; 8     ; Signed Integer                                                                                       ;
+; depth          ; 32    ; Signed Integer                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops ;
++----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                     ;
++----------------+-------+--------------------------------------------------------------------------+
+; Tp             ; 1     ; Signed Integer                                                           ;
+; width          ; 1     ; Signed Integer                                                           ;
+; init_value     ; 1     ; Unsigned Binary                                                          ;
++----------------+-------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver ;
++-----------------+-------+--------------------------------------------------------------+
+; Parameter Name  ; Value ; Type                                                         ;
++-----------------+-------+--------------------------------------------------------------+
+; sr_idle         ; 0000  ; Unsigned Binary                                              ;
+; sr_rec_start    ; 0001  ; Unsigned Binary                                              ;
+; sr_rec_bit      ; 0010  ; Unsigned Binary                                              ;
+; sr_rec_parity   ; 0011  ; Unsigned Binary                                              ;
+; sr_rec_stop     ; 0100  ; Unsigned Binary                                              ;
+; sr_check_parity ; 0101  ; Unsigned Binary                                              ;
+; sr_rec_prepare  ; 0110  ; Unsigned Binary                                              ;
+; sr_end_bit      ; 0111  ; Unsigned Binary                                              ;
+; sr_ca_lc_parity ; 1000  ; Unsigned Binary                                              ;
+; sr_wait1        ; 1001  ; Unsigned Binary                                              ;
+; sr_push         ; 1010  ; Unsigned Binary                                              ;
++-----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; fifo_width     ; 11    ; Signed Integer                                                                   ;
+; fifo_depth     ; 32    ; Signed Integer                                                                   ;
+; fifo_pointer_w ; 4     ; Signed Integer                                                                   ;
+; fifo_counter_w ; 5     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo ;
++----------------+-------+------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------------+
+; addr_width     ; 4     ; Signed Integer                                                                                 ;
+; data_width     ; 8     ; Signed Integer                                                                                 ;
+; depth          ; 32    ; Signed Integer                                                                                 ;
++----------------+-------+------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                                 ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                              ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                           ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                         ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                         ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                       ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                              ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                              ;
+; WIDTH_A                            ; 8                    ; Untyped                                                                              ;
+; WIDTHAD_A                          ; 4                    ; Untyped                                                                              ;
+; NUMWORDS_A                         ; 16                   ; Untyped                                                                              ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                              ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                              ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                              ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                              ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                              ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                              ;
+; WIDTH_B                            ; 8                    ; Untyped                                                                              ;
+; WIDTHAD_B                          ; 4                    ; Untyped                                                                              ;
+; NUMWORDS_B                         ; 16                   ; Untyped                                                                              ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                              ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                              ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                              ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                              ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                              ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                              ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                              ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                              ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                              ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                              ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                              ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                              ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                              ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                              ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                              ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                              ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                              ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                              ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                              ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                                              ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                              ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                              ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                              ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                              ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                              ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                              ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                              ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                              ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                              ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                              ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                              ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                              ;
+; CBXI_PARAMETER                     ; altsyncram_u9c1      ; Untyped                                                                              ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0 ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                                       ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                                    ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                                 ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                               ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                               ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                                             ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                                    ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                                    ;
+; WIDTH_A                            ; 8                    ; Untyped                                                                                    ;
+; WIDTHAD_A                          ; 4                    ; Untyped                                                                                    ;
+; NUMWORDS_A                         ; 16                   ; Untyped                                                                                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                                    ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                                    ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                                    ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                                    ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                                    ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                                    ;
+; WIDTH_B                            ; 8                    ; Untyped                                                                                    ;
+; WIDTHAD_B                          ; 4                    ; Untyped                                                                                    ;
+; NUMWORDS_B                         ; 16                   ; Untyped                                                                                    ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                                    ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                                    ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                                    ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                                                                                    ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                                    ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                                    ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                                    ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                                    ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                                    ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                                    ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                                    ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                                    ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                                    ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                                    ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                                    ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                                    ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                                    ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                                    ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                                                    ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                                    ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                                    ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                                    ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                                    ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                                    ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                                    ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                                    ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                                    ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                                    ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                                    ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                                    ;
+; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                                                                                    ;
+; CBXI_PARAMETER                     ; altsyncram_u9c1      ; Untyped                                                                                    ;
++------------------------------------+----------------------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------+
+; altpll Parameter Settings by Entity Instance                         ;
++-------------------------------+--------------------------------------+
+; Name                          ; Value                                ;
++-------------------------------+--------------------------------------+
+; Number of entity instances    ; 1                                    ;
+; Entity Instance               ; my_pll:U_PLL|altpll:altpll_component ;
+;     -- OPERATION_MODE         ; NORMAL                               ;
+;     -- PLL_TYPE               ; AUTO                                 ;
+;     -- PRIMARY_CLOCK          ; INCLK0                               ;
+;     -- INCLK0_INPUT_FREQUENCY ; 20000                                ;
+;     -- INCLK1_INPUT_FREQUENCY ; 0                                    ;
+;     -- VCO_MULTIPLY_BY        ; 0                                    ;
+;     -- VCO_DIVIDE_BY          ; 0                                    ;
++-------------------------------+--------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                                                  ;
++-------------------------------------------+-------------------------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                                                 ;
++-------------------------------------------+-------------------------------------------------------------------------------------------------------+
+; Number of entity instances                ; 2                                                                                                     ;
+; Entity Instance                           ; uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0       ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                             ;
+;     -- WIDTH_A                            ; 8                                                                                                     ;
+;     -- NUMWORDS_A                         ; 16                                                                                                    ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                          ;
+;     -- WIDTH_B                            ; 8                                                                                                     ;
+;     -- NUMWORDS_B                         ; 16                                                                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                             ;
+; Entity Instance                           ; uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                                             ;
+;     -- WIDTH_A                            ; 8                                                                                                     ;
+;     -- NUMWORDS_A                         ; 16                                                                                                    ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                          ;
+;     -- WIDTH_B                            ; 8                                                                                                     ;
+;     -- NUMWORDS_B                         ; 16                                                                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                             ;
++-------------------------------------------+-------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_regs:U_Driver|uart_receiver:receiver"                                            ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; rstate ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops" ;
++-----------------+-------+----------+---------------------------------------------+
+; Port            ; Type  ; Severity ; Details                                     ;
++-----------------+-------+----------+---------------------------------------------+
+; stage1_rst_i    ; Input ; Info     ; Stuck at GND                                ;
+; stage1_clk_en_i ; Input ; Info     ; Stuck at VCC                                ;
++-----------------+-------+----------+---------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx"                    ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; overrun ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "uart_regs:U_Driver"                                                                                                                                  ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                                                                                      ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; modem_inputs ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; rts_pad_o    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; dtr_pad_o    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; int_o        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; baud_o       ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++--------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "my_pll:U_PLL"          ;
++------+--------+----------+------------------------+
+; Port ; Type   ; Severity ; Details                ;
++------+--------+----------+------------------------+
+; c0   ; Output ; Info     ; Explicitly unconnected ;
+; c1   ; Output ; Info     ; Explicitly unconnected ;
+; c3   ; Output ; Info     ; Explicitly unconnected ;
++------+--------+----------+------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:03     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
+    Info: Processing started: Tue Mar 30 00:11:47 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off uart_test -c uart_test
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file sources/my_pll.v
+    Info (12023): Found entity 1: my_pll
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_transmitter.v
+    Info (12023): Found entity 1: uart_transmitter
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_tfifo.v
+    Info (12023): Found entity 1: uart_tfifo
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_sync_flops.v
+    Info (12023): Found entity 1: uart_sync_flops
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_rfifo.v
+    Info (12023): Found entity 1: uart_rfifo
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_regs.v
+    Info (12023): Found entity 1: uart_regs
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/uart_receiver.v
+    Info (12023): Found entity 1: uart_receiver
+Info (12021): Found 0 design units, including 0 entities, in source file sources/uart/rtl/verilog/uart16550/uart_defines.v
+Info (12021): Found 0 design units, including 0 entities, in source file sources/uart/rtl/verilog/uart16550/timescale.v
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart/rtl/verilog/uart16550/raminfr.v
+    Info (12023): Found entity 1: raminfr
+Info (12021): Found 1 design units, including 1 entities, in source file sources/fifo.v
+    Info (12023): Found entity 1: fifo
+Info (12021): Found 1 design units, including 1 entities, in source file sources/uart_test.v
+    Info (12023): Found entity 1: uart_test
+Info (12127): Elaborating entity "uart_test" for the top level hierarchy
+Info (12128): Elaborating entity "my_pll" for hierarchy "my_pll:U_PLL"
+Info (12128): Elaborating entity "altpll" for hierarchy "my_pll:U_PLL|altpll:altpll_component"
+Info (12130): Elaborated megafunction instantiation "my_pll:U_PLL|altpll:altpll_component"
+Info (12133): Instantiated megafunction "my_pll:U_PLL|altpll:altpll_component" with the following parameter:
+    Info (12134): Parameter "bandwidth_type" = "AUTO"
+    Info (12134): Parameter "clk0_divide_by" = "10"
+    Info (12134): Parameter "clk0_duty_cycle" = "50"
+    Info (12134): Parameter "clk0_multiply_by" = "1"
+    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "clk1_divide_by" = "100"
+    Info (12134): Parameter "clk1_duty_cycle" = "50"
+    Info (12134): Parameter "clk1_multiply_by" = "1"
+    Info (12134): Parameter "clk1_phase_shift" = "0"
+    Info (12134): Parameter "clk2_divide_by" = "2"
+    Info (12134): Parameter "clk2_duty_cycle" = "50"
+    Info (12134): Parameter "clk2_multiply_by" = "1"
+    Info (12134): Parameter "clk2_phase_shift" = "0"
+    Info (12134): Parameter "clk3_divide_by" = "1"
+    Info (12134): Parameter "clk3_duty_cycle" = "50"
+    Info (12134): Parameter "clk3_multiply_by" = "5"
+    Info (12134): Parameter "clk3_phase_shift" = "0"
+    Info (12134): Parameter "compensate_clock" = "CLK0"
+    Info (12134): Parameter "inclk0_input_frequency" = "20000"
+    Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
+    Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=my_pll"
+    Info (12134): Parameter "lpm_type" = "altpll"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
+    Info (12134): Parameter "pll_type" = "AUTO"
+    Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
+    Info (12134): Parameter "port_areset" = "PORT_USED"
+    Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info (12134): Parameter "port_configupdate" = "PORT_UNUSED"
+    Info (12134): Parameter "port_fbin" = "PORT_UNUSED"
+    Info (12134): Parameter "port_inclk0" = "PORT_USED"
+    Info (12134): Parameter "port_inclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_locked" = "PORT_USED"
+    Info (12134): Parameter "port_pfdena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasedone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasestep" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pllena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclk" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandata" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandataout" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk0" = "PORT_USED"
+    Info (12134): Parameter "port_clk1" = "PORT_USED"
+    Info (12134): Parameter "port_clk2" = "PORT_USED"
+    Info (12134): Parameter "port_clk3" = "PORT_USED"
+    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
+    Info (12134): Parameter "self_reset_on_loss_lock" = "OFF"
+    Info (12134): Parameter "width_clock" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/my_pll_altpll.v
+    Info (12023): Found entity 1: my_pll_altpll
+Info (12128): Elaborating entity "my_pll_altpll" for hierarchy "my_pll:U_PLL|altpll:altpll_component|my_pll_altpll:auto_generated"
+Info (12128): Elaborating entity "fifo" for hierarchy "fifo:U_Controller"
+Warning (10036): Verilog HDL or VHDL warning at fifo.v(71): object "start_input_string" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fifo.v(120): object "string_Length" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at fifo.v(176): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at fifo.v(249): truncated value with size 249 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at fifo.v(251): truncated value with size 32 to match size of target (1)
+Warning (10030): Net "string_NHAP_MA_TAU[12][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[13][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[14][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[15][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[16][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[17][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[18][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[19][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[20][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[21][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[22][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[23][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[24][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[25][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[26][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[27][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[28][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[29][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "string_NHAP_MA_TAU[30][7..0]" at fifo.v(119) has no driver or initial value, using a default initial value '0'
+Info (12128): Elaborating entity "uart_regs" for hierarchy "uart_regs:U_Driver"
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(616): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(628): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(639): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(650): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(661): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(672): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(683): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(694): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(703): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(705): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(742): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(811): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(818): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(825): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(832): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(839): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at uart_regs.v(850): truncated value with size 32 to match size of target (1)
+Info (12128): Elaborating entity "uart_transmitter" for hierarchy "uart_regs:U_Driver|uart_transmitter:transmitter"
+Info (12128): Elaborating entity "uart_tfifo" for hierarchy "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx"
+Info (12128): Elaborating entity "raminfr" for hierarchy "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo"
+Info (12128): Elaborating entity "uart_sync_flops" for hierarchy "uart_regs:U_Driver|uart_sync_flops:i_uart_sync_flops"
+Info (12128): Elaborating entity "uart_receiver" for hierarchy "uart_regs:U_Driver|uart_receiver:receiver"
+Warning (10036): Verilog HDL or VHDL warning at uart_receiver.v(228): object "rbit_in" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at uart_receiver.v(261): object "rcounter16_eq_1" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at uart_receiver.v(466): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at uart_receiver.v(482): truncated value with size 32 to match size of target (10)
+Info (12128): Elaborating entity "uart_rfifo" for hierarchy "uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx"
+Warning (10027): Verilog HDL or VHDL warning at the uart_rfifo.v(326): index expression is not wide enough to address all of the elements in the array
+Warning (276020): Inferred RAM node "uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Warning (276020): Inferred RAM node "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (19000): Inferred 2 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 4
+        Info (286033): Parameter NUMWORDS_A set to 16
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 4
+        Info (286033): Parameter NUMWORDS_B set to 16
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|ram_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 8
+        Info (286033): Parameter WIDTHAD_A set to 4
+        Info (286033): Parameter NUMWORDS_A set to 16
+        Info (286033): Parameter WIDTH_B set to 8
+        Info (286033): Parameter WIDTHAD_B set to 4
+        Info (286033): Parameter NUMWORDS_B set to 16
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0"
+Info (12133): Instantiated megafunction "uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "8"
+    Info (12134): Parameter "WIDTHAD_A" = "4"
+    Info (12134): Parameter "NUMWORDS_A" = "16"
+    Info (12134): Parameter "WIDTH_B" = "8"
+    Info (12134): Parameter "WIDTHAD_B" = "4"
+    Info (12134): Parameter "NUMWORDS_B" = "16"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_u9c1.tdf
+    Info (12023): Found entity 1: altsyncram_u9c1
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDG[1]" is stuck at VCC
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 9 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Warning (15897): PLL "my_pll:U_PLL|altpll:altpll_component|my_pll_altpll:auto_generated|pll1" has parameter compensate_clock set to clock0 but port CLK[0] is not connected
+Warning (15899): PLL "my_pll:U_PLL|altpll:altpll_component|my_pll_altpll:auto_generated|pll1" has parameters clk0_multiply_by and clk0_divide_by specified but port CLK[0] is not connected
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[2]"
+Info (21057): Implemented 963 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 20 output pins
+    Info (21061): Implemented 921 logic cells
+    Info (21064): Implemented 16 RAM segments
+    Info (21065): Implemented 1 PLLs
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 56 warnings
+    Info: Peak virtual memory: 4645 megabytes
+    Info: Processing ended: Tue Mar 30 00:11:54 2021
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:05
+
+

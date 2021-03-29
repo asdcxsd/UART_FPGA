@@ -1,0 +1,17 @@
+
+State Machine - |uart_test|fifo:U_Controller|state
+Name state.ST_SHOW_LED_RED state.ST_LISTEN_PC state.ST_WAIT_KEY state.ST_SEND_TEST_CHAR_WAIT state.ST_CMD_DECODE state.ST_CHECK_LSR state.ST_READ_LSR state.ST_SEND_TEST_CHAR state.ST_IER state.ST_FCR state.ST_LCR state.ST_DL_LSB state.ST_DL_MSB state.ST_IDLE 
+state.ST_IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.ST_DL_MSB 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.ST_DL_LSB 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.ST_LCR 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.ST_FCR 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.ST_IER 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.ST_SEND_TEST_CHAR 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.ST_READ_LSR 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.ST_CHECK_LSR 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.ST_CMD_DECODE 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.ST_SEND_TEST_CHAR_WAIT 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.ST_WAIT_KEY 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.ST_LISTEN_PC 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.ST_SHOW_LED_RED 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
