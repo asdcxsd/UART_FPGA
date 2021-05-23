@@ -1,7 +1,11 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="uart_test">
+		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|led_sw_cmd:U_led_sw|altsyncram:WideOr0_rtl_0" CBX_FILE_NAME="altsyncram_b201.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|led_sw_cmd:U_led_sw|altsyncram:WideOr4_rtl_0" CBX_FILE_NAME="altsyncram_c201.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|led_sw_cmd:U_led_sw|altsyncram:WideOr8_rtl_0" CBX_FILE_NAME="altsyncram_d201.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|my_pll:U_PLL|altpll:altpll_component" CBX_FILE_NAME="my_pll_altpll.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|led_sw_cmd:U_led_sw|altsyncram:WideOr12_rtl_0" CBX_FILE_NAME="altsyncram_e201.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|uart_regs:U_Driver|uart_receiver:receiver|uart_rfifo:fifo_rx|raminfr:rfifo|altsyncram:ram_rtl_0" CBX_FILE_NAME="altsyncram_u9c1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|uart_test|uart_regs:U_Driver|uart_transmitter:transmitter|uart_tfifo:fifo_tx|raminfr:tfifo|altsyncram:ram_rtl_0" CBX_FILE_NAME="altsyncram_u9c1.tdf"/>
 	</PROJECT>

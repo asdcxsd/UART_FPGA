@@ -14,7 +14,12 @@ module fifo(
 	uart_re_o,
 	cont_key,
 	led_test,
-	led_red
+	message_output,
+	led_sv_output,
+	led_output,
+	sw_input,
+	led_input,
+	length_of_string
 	);
 
 //=================================================================================================================
@@ -42,11 +47,19 @@ parameter ST_WAIT_KEY = 8'd11;
 parameter ST_LISTEN_PC = 8'd12;
 parameter ST_SHOW_LED_RED  = 8'd13;
 
+
+parameter STRING_CONNECT  = 8'd48;
+parameter STRING_STATUS_SWITCH  = 8'd49;
+parameter STRING_STATUS_LED  = 8'd50;
+parameter STRING_SET_LED  = 8'd51;
+parameter STRING_SET_LCD  = 8'd52;
+parameter STRING_SET_LED_SV  = 8'd53;
+
 // PC Command list
 parameter CM_SEND_TEST_CHAR = 8'h2f; // '/'
 
 // PC Command list
-parameter CM_SEND_ENTER = 8'h0d; // 'enter'
+parameter CM_SEND_ENTER = 8'h7E; // 'enter'
 
 //=================================================================================================================
 // input, output ports
@@ -62,12 +75,31 @@ input wire [7:0] uart_rdata_i;
 output reg uart_we_o;
 output reg uart_re_o;
 input cont_key;
+input [8:0]sw_input;
+input [8:0] led_input;
 output [2:0] led_test;
-output [15:0] led_red;
+output [61*8:0] message_output;
+output [4*8:0] led_sv_output;
+output [8:0]	led_output;
+output [8:0] length_of_string;
 
-reg [15:0] input_red;
-reg [15:0] data_input;
-assign led_red = input_red;
+reg [61*8:0] string_message;
+reg [8:0] length_of_message;
+reg [8:0] length_of_cmd;
+reg [4*8:0] string_led_sv;
+reg [8:0] string_led;
+assign message_output = string_message;
+assign led_sv_output = string_led_sv;
+assign led_output = string_led;
+assign length_of_string = length_of_message;
+
+
+reg [8:0] STATUS_SW_END ;
+reg [8:0] STATUS_LED_END;
+
+
+reg [8*70:0] data_input;
+
 reg start_input_string;
 reg led_1;
 reg led_2;
@@ -116,7 +148,15 @@ CHAR_Z = 8'h7a,
 CHAR_Space = 8'h20, 
 CHAR_Enter = 8'h0a;
 
+reg [8*60:0] string_space;
 reg [8*31:0] string_NHAP_MA_TAU[0:30];
+reg [8*4:0] string_CONNECT[0:3];
+reg [8*4:0] string_get_STAUTUS_SWITCHS[0:3];
+reg [8*4:0] string_get_STAUTUS_LED[0:3];
+reg [8*4:0] string_set_STAUTUS_SWITCHS[0:3];
+reg [8*41:0] string_LCD[0:40];
+reg [8*5:0] string_LED_SV[0:4];
+reg [8*3:0] string_response[0:2];
 reg string_Length;
 //===========================================================================================================================
 
@@ -138,8 +178,8 @@ begin
 		state <= ST_IDLE;
 		r_counter <= 32'd0;
 		r_counter2 <= 32'd0;
-		
-		input_red <= 16'd0;
+		string_message <= 16'd0;
+
 		data_input <= 16'd0;
 
 	end
@@ -161,19 +201,10 @@ begin
 					
 					// ==
 		
-					string_NHAP_MA_TAU[0] <= CHAR_N;
-					string_NHAP_MA_TAU[1] <= CHAR_H;
-					string_NHAP_MA_TAU[2] <= CHAR_A;
-					string_NHAP_MA_TAU[3] <= CHAR_P;
-					string_NHAP_MA_TAU[4] <= CHAR_Space;
-					string_NHAP_MA_TAU[5] <= CHAR_M;
-					string_NHAP_MA_TAU[6] <= CHAR_A;
-					string_NHAP_MA_TAU[7] <= CHAR_Space;
-					string_NHAP_MA_TAU[8] <= CHAR_T;
-					string_NHAP_MA_TAU[9] <= CHAR_A;
-					string_NHAP_MA_TAU[10] <= CHAR_U;
-					string_NHAP_MA_TAU[11] <= CHAR_Space;
-					string_Length <= 32'd11;
+					string_response[0] <= CHAR_O;
+					string_response[1] <= CHAR_K;
+					string_response[2] <= CM_SEND_ENTER;
+					string_Length <= 32'd3;
 					//==
 					
 					if(Enable == 1'b1)
@@ -240,13 +271,13 @@ begin
 					// test pattern == just write 'T' character to the terminal screen
 
 					// below 4 lines is disables in case with tty test
-					input_red <= 16'd0;
-					data_input <= 16'd0;
-					if (r_counter< 32'd11) begin
+	
+					
+					if (r_counter< 32'd3) begin
 						uart_addr_o <= 3'b000;
 						uart_we_o <= 1'b1;
 						uart_re_o <= 1'b0;
-						uart_wdata_o <= string_NHAP_MA_TAU[r_counter];
+						uart_wdata_o <= string_response[r_counter];
 						
 						led_3 <= (led_3+1)&1;
 						r_counter <= r_counter + 32'd1;
@@ -255,6 +286,7 @@ begin
 					end else 
 					begin 
 						start_input_string <= 0;
+						length_of_cmd <= 0;
 						state <= ST_LISTEN_PC;
 					end
 				
@@ -329,42 +361,73 @@ begin
 							state <= ST_SEND_TEST_CHAR;
 						end
 						CM_SEND_ENTER: begin
-							//r_counter <= 32'd0;
-							state <= ST_SHOW_LED_RED;
+
+							r_counter <= 0;
+							case (data_input & 8'b11111111)
+							
+								STRING_CONNECT: begin
+									string_response[1] = STRING_CONNECT;
+									string_response[0] = 8'd49;
+									string_response[2] = CM_SEND_ENTER;
+									
+									state <= ST_SEND_TEST_CHAR;
+								end
+								
+								STRING_STATUS_SWITCH: begin
+									STATUS_SW_END = sw_input ;
+									string_response[1] = STRING_STATUS_SWITCH;
+									string_response[0] = STATUS_SW_END;
+									string_response[2] = CM_SEND_ENTER;
+									state <= ST_SEND_TEST_CHAR;
+								end
+								STRING_SET_LED: begin
+									string_led <= (data_input >> 8);
+									string_response[1] = STRING_SET_LED;
+									string_response[0] = 8'd49;
+									string_response[2] = CM_SEND_ENTER;	
+									state <= ST_SEND_TEST_CHAR;							
+								end
+								
+								STRING_SET_LCD: begin
+									length_of_message <= length_of_cmd - 1;
+									string_message <=  (data_input >> 8);
+
+									string_response[1] = STRING_SET_LCD;
+									string_response[0] = 8'd49;
+									string_response[2] = CM_SEND_ENTER;	
+									state <= ST_SEND_TEST_CHAR;
+								end
+								
+								STRING_SET_LED_SV: begin
+									string_led_sv <= (data_input >> 8);
+									string_response[1] = STRING_SET_LED_SV;
+									string_response[0] = 8'd49;
+									string_response[2] = CM_SEND_ENTER;		
+									state <= ST_SEND_TEST_CHAR;
+								end
+								default:
+								begin
+									
+									//string_message <= (data_input >> 8);
+									string_message <= (data_input >> 8);
+									state <= ST_SHOW_LED_RED;
+								end
+							endcase
+							data_input<= 0;
+							length_of_cmd <= 0;
 						end
-						/*
-						CHAR_A: begin
-							data_input <= (data_input << 8 ) |  CHAR_A;
-						end
-						CHAR_B: begin
-							data_input <= (data_input << 8 ) | CHAR_B;
-						end
-						CHAR_C: begin
-							data_input <= (data_input << 8 ) | CHAR_C;
-						end
-						CHAR_D: begin
-							data_input <= (data_input << 8 ) | CHAR_D;
-						end
-						CHAR_E: begin
-							data_input <= (data_input << 8 ) | CHAR_E;
-						end
-						CHAR_F: begin
-							data_input <= (data_input << 8 ) | CHAR_F;
-						end
-						CHAR_G: begin
-							data_input <= (data_input << 8 ) | CHAR_G;
-						end */
 
 						default: begin
 							data_input <= (data_input << 8 ) | uart_rdata_i;
+							length_of_cmd <= length_of_cmd + 1;
 							state <= ST_LISTEN_PC;
 						end
 					endcase
 					
+					
 				end
 				
 				ST_SHOW_LED_RED : begin
-					input_red <= data_input;
 					state <= ST_LISTEN_PC;
 				end
 				

@@ -1,4 +1,18 @@
 
+State Machine - |uart_test|lcd_messages:lcd_show|mLCD_ST
+Name mLCD_ST.000011 mLCD_ST.000010 mLCD_ST.000001 mLCD_ST.000000 
+mLCD_ST.000000 0 0 0 0 
+mLCD_ST.000001 0 0 1 1 
+mLCD_ST.000010 0 1 0 1 
+mLCD_ST.000011 1 0 0 1 
+
+State Machine - |uart_test|lcd_messages:lcd_show|lcd_controller:u0|ST
+Name ST.11 ST.10 ST.01 ST.00 
+ST.00 0 0 0 0 
+ST.01 0 0 1 1 
+ST.10 0 1 0 1 
+ST.11 1 0 0 1 
+
 State Machine - |uart_test|fifo:U_Controller|state
 Name state.ST_SHOW_LED_RED state.ST_LISTEN_PC state.ST_WAIT_KEY state.ST_SEND_TEST_CHAR_WAIT state.ST_CMD_DECODE state.ST_CHECK_LSR state.ST_READ_LSR state.ST_SEND_TEST_CHAR state.ST_IER state.ST_FCR state.ST_LCR state.ST_DL_LSB state.ST_DL_MSB state.ST_IDLE 
 state.ST_IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

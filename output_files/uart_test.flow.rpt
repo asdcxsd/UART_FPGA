@@ -1,5 +1,5 @@
 Flow report for uart_test
-Tue Mar 30 00:12:33 2021
+Sun May 23 10:46:16 2021
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -40,20 +40,20 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Tue Mar 30 00:12:27 2021      ;
+; Flow Status                        ; Successful - Sun May 23 10:46:09 2021      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; uart_test                                  ;
 ; Top-level Entity Name              ; uart_test                                  ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE115F29C7                              ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 788 / 114,480 ( < 1 % )                    ;
-;     Total combinational functions  ; 752 / 114,480 ( < 1 % )                    ;
-;     Dedicated logic registers      ; 436 / 114,480 ( < 1 % )                    ;
-; Total registers                    ; 436                                        ;
-; Total pins                         ; 25 / 529 ( 5 % )                           ;
+; Total logic elements               ; 3,760 / 114,480 ( 3 % )                    ;
+;     Total combinational functions  ; 3,663 / 114,480 ( 3 % )                    ;
+;     Dedicated logic registers      ; 1,734 / 114,480 ( 2 % )                    ;
+; Total registers                    ; 1734                                       ;
+; Total pins                         ; 79 / 529 ( 15 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
-; Total memory bits                  ; 256 / 3,981,312 ( < 1 % )                  ;
+; Total memory bits                  ; 6,400 / 3,981,312 ( < 1 % )                ;
 ; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                            ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                             ;
 +------------------------------------+--------------------------------------------+
@@ -64,29 +64,31 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/30/2021 00:11:47 ;
+; Start date & time ; 05/23/2021 10:44:50 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; uart_test           ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                 ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
-; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 233654134067903.161703790700812 ; --            ; --          ; --         ;
-; IP_TOOL_NAME                        ; ALTPLL                          ; --            ; --          ; --         ;
-; IP_TOOL_VERSION                     ; 13.1                            ; --            ; --          ; --         ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --            ; --          ; --         ;
-; MISC_FILE                           ; sources/my_pll.ppf              ; --            ; --          ; --         ;
-; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                            ; --            ; --          ; --         ;
-; PARTITION_COLOR                     ; 16764057                        ; --            ; --          ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING           ; --            ; --          ; Top        ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                          ; --            ; --          ; Top        ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                    ; --            ; --          ; --         ;
-+-------------------------------------+---------------------------------+---------------+-------------+------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                       ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 233654134067903.162174148909872       ; --            ; --          ; --         ;
+; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --         ;
+; IP_TOOL_VERSION                     ; 13.1                                  ; --            ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                    ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                     ; --            ; --          ; --         ;
+; MISC_FILE                           ; sources/my_pll.ppf                    ; --            ; --          ; --         ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                  ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; 16764057                              ; --            ; --          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; --          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; --          ; Top        ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                   ; --            ; --          ; --         ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --         ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                          ; --            ; --          ; --         ;
++-------------------------------------+---------------------------------------+---------------+-------------+------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -94,11 +96,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:06     ; 1.0                     ; 4634 MB             ; 00:00:05                           ;
-; Fitter                    ; 00:00:22     ; 1.0                     ; 5151 MB             ; 00:00:19                           ;
-; Assembler                 ; 00:00:06     ; 1.0                     ; 4593 MB             ; 00:00:05                           ;
-; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 4688 MB             ; 00:00:03                           ;
-; Total                     ; 00:00:38     ; --                      ; --                  ; 00:00:32                           ;
+; Analysis & Synthesis      ; 00:00:19     ; 1.0                     ; 4662 MB             ; 00:00:18                           ;
+; Fitter                    ; 00:00:51     ; 1.0                     ; 5199 MB             ; 00:00:51                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 4622 MB             ; 00:00:05                           ;
+; TimeQuest Timing Analyzer ; 00:00:06     ; 1.0                     ; 4734 MB             ; 00:00:05                           ;
+; Total                     ; 00:01:21     ; --                      ; --                  ; 00:01:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

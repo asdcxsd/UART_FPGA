@@ -1,1 +1,7 @@
-Warning (10268): Verilog HDL information at fifo.v(125): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at led_sw.v(52): always construct contains both blocking and non-blocking assignments
+Warning (10273): Verilog HDL warning at lcd_test.v(119): extended using "x" or "z"
+Warning (10268): Verilog HDL information at lcd_messages.v(39): always construct contains both blocking and non-blocking assignments
+Warning (10273): Verilog HDL warning at lcd_messages.v(229): extended using "x" or "z"
+Warning (10268): Verilog HDL information at fifo.v(165): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at fifo.v(51): object "STRING_CONNECT" differs only in case from object "string_CONNECT" in the same scope
+Info (10281): Verilog HDL Declaration information at fifo.v(89): object "string_led_sv" differs only in case from object "string_LED_SV" in the same scope

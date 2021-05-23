@@ -1,0 +1,12 @@
+
+module led_sw_cmd(
+	led_sv_output,
+	led_output,
+	sw_input,
+	led_input
+);
+
+input sw_input;
+input led_input;
+output led_output;
+output led_sv_output;
